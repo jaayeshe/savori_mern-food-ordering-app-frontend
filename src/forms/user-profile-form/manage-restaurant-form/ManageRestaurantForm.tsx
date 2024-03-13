@@ -2,6 +2,8 @@ import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import DetailsSection from "./DetailsSection";
+
 const formSchema = z.object({
   restaurantName: z.string({
     required_error: "restaurant name is required",
@@ -59,8 +61,10 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 bg-gray p-19 rounded-lg"
-      ></form>
+        className="space-y-8 bg-gray-50 p019 rounded-md"
+      >
+        <DetailsSection />
+      </form>
     </Form>
   );
 };
@@ -78,3 +82,6 @@ export default ManageRestaurantForm;
 //...form: spreading all the form functions & methods & objects,
 //etc that we get from these form hook onto the shadcn form
 //so that we can link the 2 together
+
+//we'll render this form on the ManageRestaurant page & add it to the
+//routes and see what it looks like in the browser.
