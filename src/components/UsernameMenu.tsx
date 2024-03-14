@@ -1,7 +1,11 @@
 import { CircleUserRound } from "lucide-react";
-import { DropdownMenu, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "./ui/dropdown-menu";
 import { useAuth0 } from "@auth0/auth0-react";
-import { DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu";
 import { Link } from "react-router-dom";
 import { Separator } from "@radix-ui/react-separator";
 import { Button } from "./ui/button";
