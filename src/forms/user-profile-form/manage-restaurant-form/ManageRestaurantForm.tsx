@@ -15,17 +15,17 @@ const formSchema = z.object({
     required_error: "restaurant name is required",
   }),
   city: z.string({
-    required_error: "City name is required",
+    required_error: "city name is required",
   }),
-  Country: z.string({
-    required_error: "Country name is required",
+  country: z.string({
+    required_error: "country name is required",
   }),
   deliveryPrice: z.coerce.number({
     required_error: "delivery price is required",
     invalid_type_error: "must be a valid number",
   }),
   estimatedDeliveryTime: z.coerce.number({
-    required_error: "Estimated Delivery Time is required",
+    required_error: "estimated Delivery Time is required",
     invalid_type_error: "must be a valid number",
   }),
   cuisines: z.array(z.string()).nonempty({
@@ -40,10 +40,10 @@ const formSchema = z.object({
   imageFile: z.instanceof(File, { message: "image is required" }),
 });
 
-//creating a type based on the properties that we added into
-//our formSchema & based on the type of those properties
+// creating a type based on the properties that we added into
+// our formSchema & based on the type of those properties
 
-type restaurantFormData = z.infer<typeof formSchema>;
+type RestaurantFormData = z.infer<typeof formSchema>;
 
 type Props = {
   onSave: (resturantFormData: FormData) => void;
@@ -51,7 +51,7 @@ type Props = {
 };
 
 const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
-  const form = useForm<restaurantFormData>({
+  const form = useForm<RestaurantFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       cuisines: [],
@@ -59,7 +59,17 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
     },
   });
 
-  const onSubmit = (formDataJson: restaurantFormData) => {
+  const onSubmit = (formDataJson: RestaurantFormData) => {
+    const formData = new FormData();
+
+    formData.append("restaurantName", formDataJson.restaurantName);
+    formData.append("city", formDataJson.city);
+    formData.append("country", formDataJson.country);
+
+    formData.append(
+      "deliveryPrice",
+      (formDataJson.deliveryPrice * 100).toString()
+    );
     //TODO - convert formDataJson to a new Formdata object
   };
 
