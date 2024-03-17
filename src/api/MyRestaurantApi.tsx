@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "react-query";
+import { toast } from "sonner";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -10,6 +11,7 @@ export const useCreateMyRestaurant = () => {
 
   const createMyRestaurantRequest = async (restaurantFormData: FormData) => {
     const accessToken = await getAccessTokenSilently();
+
     const response = await fetch(`${API_BASE_URL}/api/my/restaurant`, {
       method: "POST",
       headers: {
@@ -23,6 +25,22 @@ export const useCreateMyRestaurant = () => {
     }
     return response.json();
   };
+
+  const {
+    mutate: createRestaurant,
+    isLoading,
+    isSuccess,
+    error,
+  } = useMutation(createMyRestaurantRequest);
+
+  if (isSuccess) {
+    toast.success("Restaurant created!");
+  }
+  if (error) {
+    toast.error("Unable to update restaurant");
+  }
+
+  return { createRestaurant, isLoading };
 
   //next we'll give this request to the use mutation hook in react...
   //query, so that it can manage state and those kind of stuff.

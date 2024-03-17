@@ -1,3 +1,7 @@
+//we are gonna define properties
+//and property types based on what
+//we get back onm the response
+
 export type User = {
   _id: string;
   email: string;
@@ -7,6 +11,23 @@ export type User = {
   country: string;
 };
 
-//we are gonna define properties
-//and property types based on what
-//we get back onm the response
+//type that describes the restaurant
+
+export type MenuItem = {
+  _id: string;
+  name: string;
+  price: number;
+};
+export type Restaurant = {
+  _id: string;
+  user: string;
+  restaurantName: string;
+  city: string;
+  country: string;
+  deliveryPrice: string;
+  estimatedDeliveryTime: number;
+  cuisines: string[];
+  menuItems: MenuItem[];
+  imageUrl: string;
+  lastUpdated: string;
+};
