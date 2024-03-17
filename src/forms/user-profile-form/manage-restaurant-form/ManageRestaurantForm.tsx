@@ -59,6 +59,7 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
     },
   });
 
+  //TODO - convert formDataJson to a new Formdata object
   const onSubmit = (formDataJson: RestaurantFormData) => {
     const formData = new FormData();
 
@@ -66,11 +67,27 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
     formData.append("city", formDataJson.city);
     formData.append("country", formDataJson.country);
 
+    //1CAD = 100 cents
+
     formData.append(
       "deliveryPrice",
       (formDataJson.deliveryPrice * 100).toString()
     );
-    //TODO - convert formDataJson to a new Formdata object
+    formData.append(
+      "estimatedDeliveryTime",
+      formDataJson.estimatedDeliveryTime.toString()
+    );
+    formDataJson.cuisines.forEach((cuisine, index) => {
+      formData.append(`cuisines[${index}]`, cuisine);
+    });
+    formDataJson.menuItems.forEach((menuItem, index) => {
+      formData.append(`menuItems[${index}][name]`, menuItem.name);
+      formData.append(
+        `menuItems[${index}][price]`,
+        (menuItem.price * 100).toString()
+      );
+    });
+    formData.append(`imageFile`, formDataJson.imageFile);
   };
 
   return (
