@@ -48,6 +48,7 @@ type RestaurantFormData = z.infer<typeof formSchema>;
 type Props = {
   onSave: (resturantFormData: FormData) => void;
   isLoading: boolean;
+  //this component will accept and onSave property
 };
 
 const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
@@ -88,6 +89,9 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
       );
     });
     formData.append(`imageFile`, formDataJson.imageFile);
+
+    onSave(formData);
+    //continue working from here
   };
 
   return (
