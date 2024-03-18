@@ -7,7 +7,7 @@ type Props = {
   field: ControllerRenderProps<FieldValues, "cuisines">;
 };
 
-const CuisineCheckBox = ({ cuisine, field }: Props) => {
+const CuisineCheckbox = ({ cuisine, field }: Props) => {
   //field.value=["pasta","pizza"]
   //cuisine='pizza
   return (
@@ -28,12 +28,12 @@ const CuisineCheckBox = ({ cuisine, field }: Props) => {
           }}
         />
       </FormControl>
-      <FormLabel className="text-sm font-normal">{cuisine} </FormLabel>
+      <FormLabel className="text-sm font-normal">{cuisine}</FormLabel>
     </FormItem>
   );
 };
 
-export default CuisineCheckBox;
+export default CuisineCheckbox;
 
 //CuisineCheckBox is a component that takes two things:
 // cuisine: This tells the component which type of food this checkbox represents, like "Pizza" or "Sushi".

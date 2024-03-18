@@ -20,6 +20,7 @@ const ImageSection = () => {
           search results. Uploading a new image will replace the existing one.
         </FormDescription>
       </div>
+
       <div className="flex flex-col gap-8 w-[50%]">
         <FormField
           control={control}

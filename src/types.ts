@@ -11,7 +11,7 @@ export type User = {
   country: string;
 };
 
-//type that describes the restaurant
+//type that describes the restaurant that's going to come back in response whenever we create a response
 
 export type MenuItem = {
   _id: string;
@@ -24,7 +24,7 @@ export type Restaurant = {
   restaurantName: string;
   city: string;
   country: string;
-  deliveryPrice: string;
+  deliveryPrice: number;
   estimatedDeliveryTime: number;
   cuisines: string[];
   menuItems: MenuItem[];
